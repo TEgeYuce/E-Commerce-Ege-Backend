@@ -19,6 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p FROM Product p ORDER BY p.sellCount DESC")
     List<Product> findProductsBySellCount(Pageable pageable);
 
-
+    boolean existsByName(String name);
 }
 

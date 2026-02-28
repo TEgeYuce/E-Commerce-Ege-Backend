@@ -4,5 +4,7 @@ import com.example.workintech.ecommege.entity.Category;
 
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
+    boolean existsByCode(String code);
 
+    Category findByCode(String code);
 }

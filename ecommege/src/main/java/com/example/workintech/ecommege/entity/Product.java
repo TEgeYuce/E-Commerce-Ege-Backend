@@ -66,8 +66,6 @@ public class Product {
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<ProductImages> images = new ArrayList<>();
-
-
+    private List<ProductImages> productImages = new ArrayList<>();
 }
 

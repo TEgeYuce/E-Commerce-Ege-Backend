@@ -17,7 +17,10 @@ public class OrderMapper {
 
         List<OrderProductsResponse> orderProductsResponses = order.getProducts().stream().map(orderProduct -> {
             Product product = orderProduct.getProduct();
-            List<ProductImagesResponse> images = product.getImages().stream().map(image -> new ProductImagesResponse(image.getUrl(), image.getIndex())).toList();
+            List<ProductImagesResponse> images = product.getProductImages()
+                    .stream()
+                    .map(image -> new ProductImagesResponse(image.getUrl(), image.getIndex()))
+                    .toList();
 
             return new OrderProductsResponse(
                     orderProduct.getId(),
@@ -40,7 +43,7 @@ public class OrderMapper {
                 order.getOrderDate(),
                 orderProductsResponses
         );
-    };
+    }
 
     public Order toEntity(OrderRequest orderRequest, User user, Address address, List<Product> products) {
 
@@ -66,7 +69,7 @@ public class OrderMapper {
             op.setOrder(order);
 
             op.setName(product.getName());
-            op.setImageUrl(product.getImages().get(0).getUrl());
+            op.setImageUrl(product.getProductImages().get(0).getUrl());
             op.setPrice(product.getPrice());
 
             return op;
@@ -78,10 +81,7 @@ public class OrderMapper {
         order.setPrice(totalPrice);
         return order;
 
-
     }
-
-
 
 }
 
